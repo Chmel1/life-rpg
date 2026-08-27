@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/DockerFile
+    
+
+    volumes:
+      - .:/var/www/html
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: life_rpg
+      POSTGRES_USER: life_rpg
+      POSTGRES_PASSWORD: secret
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
