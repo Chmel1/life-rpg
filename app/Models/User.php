@@ -29,4 +29,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected static function booted(){
+        static::created(function(User $user){
+            $user->character()->create([
+                'name'=> $user->name,
+            ]);
+        });
+    }
+
+    public function character(){
+        return $this->hasOne(Character::class);
+    }
 }
