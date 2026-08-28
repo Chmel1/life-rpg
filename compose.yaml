@@ -38,6 +38,12 @@ services:
     depends_on:
       - app
 
+  node:
+    image: node:22-alpine
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    command: tail -f /dev/null
     
 volumes:
   postgres_data:
