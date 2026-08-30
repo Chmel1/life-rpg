@@ -16,4 +16,11 @@ class Skill extends Model
             'xp',
         ]);
     }
+
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class)
+            ->withPivot('xp')
+            ->withTimestamps();
+    }
 }

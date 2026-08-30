@@ -47,5 +47,10 @@ class Character extends Model
         $this->skills()->syncWithoutDetaching($data);
     }
 
+    public function activityLogs()
+    {
+        return $this->hasMany(ActivityLog::class);
+    }
+
     
 }
