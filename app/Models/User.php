@@ -35,6 +35,8 @@ class User extends Authenticatable
             $user->character()->create([
                 'name'=> $user->name,
             ]);
+            
+           
         });
     }
 

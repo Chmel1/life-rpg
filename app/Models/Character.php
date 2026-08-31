@@ -20,7 +20,7 @@ class Character extends Model
         });
     }
 
-    public function usser(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
@@ -50,6 +50,10 @@ class Character extends Model
     public function activityLogs()
     {
         return $this->hasMany(ActivityLog::class);
+    }
+
+    public function achievements(){
+        return $this->belongsToMany(Achievement::class, 'character_achievement')->withPivot('unlocked_at');
     }
 
     
