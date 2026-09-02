@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActivityLog extends Model
 {
+    protected $fillable = [
+        'character_id',
+        'activity_id',
+        'xp_earned',
+    ];
     
 
     public function character(){
