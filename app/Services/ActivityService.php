@@ -11,7 +11,9 @@ class ActivityService
 {
 
     public function __construct(
-            private CharacterLevelService $characterLevelService
+            private CharacterLevelService $characterLevelService,
+            private SkillLevelService $skillLevelService,
+            private AchievementService $achievementService
         ) {
         }
     public function complete(Character $character, Activity $activity): ActivityLog{
@@ -21,6 +23,13 @@ class ActivityService
                 'xp_earned' => $activity->base_xp,
             ]);
             $this->characterLevelService->addXp($character,$activity->base_xp);
+
+            foreach($activity->skills as $skill){
+                $this->skillLevelService->addXp($character, $skill, $skill->pivot->xp);
+            }
+
+            $this->achievementService->check($character);
+
             return $log;
         });
     }
