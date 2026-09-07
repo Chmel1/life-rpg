@@ -43,6 +43,9 @@ class AchievementService
             'character_level' => $character->level
                 >= $achievement->requirement,
 
+            'total_xp' => $character->total_xp
+                >= $achievement->requirement,
+
             default => false,
         };
     }

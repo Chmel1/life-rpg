@@ -12,6 +12,7 @@ class Character extends Model
     'level',
     'xp',
     'user_id',
+    'total_xp',
 ];
     protected static function booted(): void
     {

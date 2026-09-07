@@ -16,6 +16,7 @@ class CharacterLevelService
 
     public function addXp(Character $character, int $xp){
         $character->xp += $xp;
+        $character->total_xp += $xp;    
 
         while(
             $this->xpService->canLevelUp(
