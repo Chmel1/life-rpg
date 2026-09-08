@@ -43,4 +43,14 @@ class User extends Authenticatable
     public function character(){
         return $this->hasOne(Character::class);
     }
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

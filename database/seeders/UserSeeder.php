@@ -12,12 +12,12 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user1 = User::create([
-            'name' => 'Test Player',
-            'email' => 'player1@example.com',
+            'name' => 'Chmel1',
+            'email' => 'besvlat@bk.ru',
             'password' => Hash::make('password'),
         ]);
 
-        $user1->character->initializeSkills();
+        
 
 
         $user2 = User::create([

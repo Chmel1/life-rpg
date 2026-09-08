@@ -14,12 +14,6 @@ class Character extends Model
     'user_id',
     'total_xp',
 ];
-    protected static function booted(): void
-    {
-        static::created(function (Character $character) {
-            $character->initializeSkills();
-        });
-    }
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -34,7 +28,8 @@ class Character extends Model
 
     public function initializeSkills(): void
     {
-        $skills = Skill::pluck('id');
+        $skills = Skill::where('user_id', $this->user_id)
+        ->pluck('id');
 
         $data = [];
 

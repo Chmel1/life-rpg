@@ -7,57 +7,109 @@ use App\Models\Character;
 
 class AchievementService
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct(private CharacterLevelService $characterLevelService)
-    {
-        
+    public function __construct(
+        private CharacterLevelService $characterLevelService
+    ) {
     }
 
-    public function check(Character $character){
-        
+    public function check(Character $character)
+    {
         $achievements = Achievement::all();
 
-        foreach($achievements as $achievement){
-            if($this->isUnlocked($character, $achievement)){
+        foreach ($achievements as $achievement) {
+            if ($this->isUnlocked($character, $achievement)) {
                 continue;
             }
+
             if ($this->isCompleted($character, $achievement)) {
                 $this->unlock($character, $achievement);
             }
         }
     }
 
-    private function isUnlocked(Character $character, Achievement $achievement){
-        
-        return $character->achievements()->where('achievements.id', $achievement->id)->exists();
+    public function getForCharacter(Character $character)
+    {
+        $achievements = Achievement::all();
 
+        return $achievements->map(function ($achievement) use ($character) {
+
+            $currentValue = $this->getCurrentValue(
+                $character,
+                $achievement
+            );
+
+            $unlocked = $this->isUnlocked(
+                $character,
+                $achievement
+            );
+
+            $progress = min(
+                $currentValue,
+                $achievement->requirement
+            );
+
+            $percent = $achievement->requirement > 0
+                ? ($progress / $achievement->requirement) * 100
+                : 0;
+
+            return [
+                'achievement' => $achievement,
+                'unlocked' => $unlocked,
+                'progress' => $progress,
+                'requirement' => $achievement->requirement,
+                'percent' => $percent,
+            ];
+        });
     }
 
-    private function isCompleted(Character $character, Achievement $achievement){
+    private function getCurrentValue(
+        Character $character,
+        Achievement $achievement
+    ){
         return match ($achievement->type) {
-            'activity_count' => $character->activityLogs()->count()
-                >= $achievement->requirement,
+            'activity_count' => $character->activityLogs()->count(),
 
-            'character_level' => $character->level
-                >= $achievement->requirement,
+            'character_level' => $character->level,
 
-            'total_xp' => $character->total_xp
-                >= $achievement->requirement,
+            'total_xp' => $character->total_xp,
 
-            default => false,
+            default => 0,
         };
     }
 
-    private function unlock(Character $character, Achievement $achievement){
+    private function isUnlocked(
+        Character $character,
+        Achievement $achievement
+    ){
+        return $character->achievements()
+            ->where('achievements.id', $achievement->id)
+            ->exists();
+    }
+
+    private function isCompleted(
+        Character $character,
+        Achievement $achievement
+    ){
+        return $this->getCurrentValue(
+            $character,
+            $achievement
+        ) >= $achievement->requirement;
+    }
+
+    private function unlock(
+        Character $character,
+        Achievement $achievement
+    ) {
         $character->achievements()->attach(
             $achievement->id,
             [
                 'unlocked_at' => now(),
             ]
         );
-        $this->characterLevelService->addXp($character, $achievement->xp_reward);
+
+        $this->characterLevelService->addXp(
+            $character,
+            $achievement->xp_reward
+        );
     }
-    
 }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkillController;
 
 
 Route::get('/', function () {
@@ -21,6 +23,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
     Route::post('/activities/{activity}/complete', [ActivityController::class, 'complete'])->name('activities.complete');
+
+    Route::get('/achievements', [AchievementController::class, 'index'])->name('achievement.index');
+
+    Route::resource('skills', SkillController::class)
+    ->only(['index', 'store', 'update', 'destroy']);
     
     });
 

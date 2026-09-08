@@ -8,6 +8,7 @@ class Skill extends Model
 {
     protected $fillable = [
         'name',
+        'user_id',
     ];
 
     public function characters(){
@@ -22,5 +23,10 @@ class Skill extends Model
         return $this->belongsToMany(Activity::class)
             ->withPivot('xp')
             ->withTimestamps();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

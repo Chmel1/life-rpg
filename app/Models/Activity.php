@@ -10,6 +10,7 @@ class Activity extends Model
         'name',
         'description',
         'base_xp',
+        'user_id',
     ];
 
     public function logs(){
@@ -20,5 +21,9 @@ class Activity extends Model
         return $this->belongsToMany(Skill::class)
             ->withPivot('xp')
             ->withTimestamps();
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

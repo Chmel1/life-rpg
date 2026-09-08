@@ -10,7 +10,7 @@ class AchievementSeeder extends Seeder
     public function run(): void
     {
         Achievement::create([
-            'name' => 'Первый шаг',
+            'name' => 'Первый step',
             'description' => 'Выполни свою первую активность.',
             'type' => 'activity_count',
             'requirement' => 1,
@@ -18,7 +18,7 @@ class AchievementSeeder extends Seeder
         ]);
 
         Achievement::create([
-            'name' => 'Десять активностей',
+            'name' => 'Десятка в кассу',
             'description' => 'Выполни 10 активностей.',
             'type' => 'activity_count',
             'requirement' => 10,
@@ -26,7 +26,7 @@ class AchievementSeeder extends Seeder
         ]);
 
         Achievement::create([
-            'name' => 'Первый уровень',
+            'name' => ' Уровень',
             'description' => 'Достигни 5 уровня персонажа.',
             'type' => 'character_level',
             'requirement' => 5,
@@ -34,7 +34,7 @@ class AchievementSeeder extends Seeder
         ]);
 
         Achievement::create([
-            'name' => '1000 XP',
+            'name' => 'На пенек сел',
             'description' => 'Получи 1000 XP.',
             'type' => 'total_xp',
             'requirement' => 1000,

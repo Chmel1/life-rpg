@@ -13,9 +13,17 @@ class ActivityController extends Controller
         $character = Auth::user()->character;
         $activities = Activity::with('skills')->get();
 
+        $logs = $character->activityLogs()
+        ->with('activity')
+        ->latest()
+        ->take(5)
+        ->get();
+
+
         return view('activities.index', compact(
             'character',
-            'activities'
+            'activities',
+            'logs'
         ));
     }
 

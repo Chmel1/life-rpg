@@ -40,13 +40,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('skills.index') }}">
                         Навыки
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('achievement.index') }}">
                         Достижения
                     </a>
                 </li>
