@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('skills', SkillController::class)
     ->only(['index', 'store', 'update', 'destroy']);
+
+    Route::resource('activities', ActivityController::class)
+    ->only(['index', 'store', 'update', 'destroy']);
     
     });
 
