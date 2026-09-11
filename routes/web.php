@@ -3,6 +3,7 @@
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('activities', ActivityController::class)
     ->only(['index', 'store', 'update', 'destroy']);
+
+    Route::get('/notifications',[NotificationController::class, 'index'])->name('notifications.index');
+
+    Route::post('/notifications/{notification}/read',[NotificationController::class, 'read'])->name('notifications.read');
     
     });
 

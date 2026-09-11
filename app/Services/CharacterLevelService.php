@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Character;
+use App\Events\LevelUp;
 
 class CharacterLevelService
 {
@@ -29,7 +30,9 @@ class CharacterLevelService
                 $character->level
             );
             $character->level++;
+            LevelUp::dispatch($character);
         }
         $character->save();
+        
     }
 }

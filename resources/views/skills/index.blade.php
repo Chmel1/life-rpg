@@ -1,124 +1,278 @@
-
 <x-app-layout>
 
     <style>
-        /* =========================
+        /* ==================================================
            PAGE
-        ========================= */
+        ================================================== */
 
         .skills-page {
-            min-height: calc(100vh - 70px);
+            min-height: calc(100vh - 56px);
+
             background:
                 radial-gradient(
-                    circle at 10% 10%,
-                    rgba(13, 110, 253, 0.08),
-                    transparent 30%
+                    circle at 10% 8%,
+                    rgba(13, 202, 240, 0.08),
+                    transparent 28%
                 ),
                 radial-gradient(
-                    circle at 90% 20%,
+                    circle at 90% 25%,
                     rgba(111, 66, 193, 0.08),
                     transparent 30%
                 ),
-                #0d1117;
+                #07111f;
 
-            color: #f1f3f5;
+            color: #e8eef7;
         }
 
 
-        /* =========================
-           HEADER
-        ========================= */
+        /* ==================================================
+           HERO
+        ================================================== */
 
-        .skills-subtitle {
-            color: #7d8590;
-            letter-spacing: 2px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .skills-description {
-            color: #8b949e;
-        }
-
-
-        /* =========================
-           CREATE BUTTON
-        ========================= */
-
-        .btn-create-skill {
-            border: none;
-            border-radius: 12px;
-            padding: 12px 22px;
-
-            background: linear-gradient(
-                135deg,
-                #0d6efd,
-                #6f42c1
-            );
-
-            color: white;
-            font-weight: 600;
-
-            box-shadow:
-                0 8px 25px rgba(13, 110, 253, 0.2);
-
-            transition: all 0.2s ease;
-        }
-
-        .btn-create-skill:hover {
-            color: white;
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 12px 30px rgba(13, 110, 253, 0.35);
-        }
-
-
-        /* =========================
-           SKILL CARD
-        ========================= */
-
-        .skill-card {
+        .skills-hero {
             position: relative;
+            overflow: hidden;
 
-            height: 100%;
+            min-height: 165px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 12, 24, 0.98) 0%,
+                    rgba(4, 12, 24, 0.78) 50%,
+                    rgba(4, 12, 24, 0.4) 100%
+                ),
+                radial-gradient(
+                    circle at 80% 35%,
+                    rgba(111, 66, 193, 0.16),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #102b3d,
+                    #0a1729 55%,
+                    #17243c
+                );
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+
+        .skills-hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
 
             background:
                 linear-gradient(
                     145deg,
-                    #171c25,
-                    #11151c
+                    transparent 0 65%,
+                    rgba(13, 202, 240, 0.06) 65% 66%,
+                    transparent 66%
+                ),
+                linear-gradient(
+                    25deg,
+                    transparent 0 72%,
+                    rgba(111, 66, 193, 0.06) 72% 73%,
+                    transparent 73%
                 );
 
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            pointer-events: none;
+        }
+
+
+        .skills-hero-icon {
+            width: 68px;
+            height: 68px;
+
+            flex: 0 0 68px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            font-size: 34px;
+
+            background:
+                rgba(13, 202, 240, 0.1);
+
+            border:
+                1px solid rgba(13, 202, 240, 0.3);
+
+            box-shadow:
+                0 0 32px rgba(13, 202, 240, 0.12),
+                inset 0 0 22px rgba(13, 202, 240, 0.04);
+        }
+
+
+        .skills-title,
+        .section-title,
+        .skill-name,
+        .modal-title {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+        }
+
+
+        .skills-subtitle {
+            color: #71869c;
+
+            font-size: 0.78rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            font-weight: 700;
+        }
+
+
+        .skills-description {
+            color: #91a4ba;
+        }
+
+
+        /* ==================================================
+           CREATE BUTTON
+        ================================================== */
+
+        .create-skill-btn {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #087f68,
+                    #10a37f
+                );
+
+            box-shadow:
+                0 8px 20px rgba(16, 163, 127, 0.16);
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+
+        .create-skill-btn:hover {
+            transform: translateY(-1px);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #099276,
+                    #12b58d
+                );
+
+            box-shadow:
+                0 10px 25px rgba(16, 163, 127, 0.24);
+        }
+
+
+        /* ==================================================
+           ALERTS
+        ================================================== */
+
+        .alert-rpg {
+            color: #bdf5df;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(32, 201, 151, 0.1),
+                    rgba(32, 201, 151, 0.04)
+                );
+
+            border:
+                1px solid rgba(32, 201, 151, 0.25);
+        }
+
+
+        /* ==================================================
+           SECTION
+        ================================================== */
+
+        .section-subtitle {
+            color: #71869c;
+        }
+
+
+        /* ==================================================
+           SKILL CARD
+        ================================================== */
+
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+
+            height: 100%;
 
             border-radius: 18px;
 
-            overflow: hidden;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17, 35, 57, 0.98),
+                    rgba(8, 22, 38, 0.98)
+                );
+
+            border:
+                1px solid rgba(130, 170, 210, 0.16);
 
             box-shadow:
-                0 8px 30px rgba(0, 0, 0, 0.25);
+                0 15px 40px rgba(0, 0, 0, 0.22);
 
             transition:
                 transform 0.2s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
+
 
         .skill-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
 
             border-color:
-                rgba(13, 110, 253, 0.3);
+                rgba(13, 202, 240, 0.4);
 
             box-shadow:
-                0 18px 45px rgba(0, 0, 0, 0.45);
+                0 22px 50px rgba(0, 0, 0, 0.32),
+                0 0 25px rgba(13, 202, 240, 0.05);
         }
 
 
-        /* =========================
+        .skill-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+            height: 190px;
+
+            top: -110px;
+            right: -90px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(13, 202, 240, 0.055);
+
+            pointer-events: none;
+        }
+
+
+        /* ==================================================
            CARD TOP LINE
-        ========================= */
+        ================================================== */
 
         .skill-card-line {
             height: 4px;
@@ -132,60 +286,83 @@
         }
 
 
-        /* =========================
+        /* ==================================================
            ICON
-        ========================= */
+        ================================================== */
 
         .skill-icon {
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 15px;
+            border-radius: 17px;
+
+            font-size: 30px;
 
             background:
-                rgba(13, 110, 253, 0.10);
+                linear-gradient(
+                    145deg,
+                    #1d3a50,
+                    #0e2032
+                );
 
             border:
-                1px solid rgba(13, 110, 253, 0.2);
-
-            font-size: 28px;
+                1px solid rgba(13, 202, 240, 0.28);
 
             box-shadow:
-                inset 0 0 20px rgba(13, 110, 253, 0.04);
+                inset 0 0 18px rgba(13, 202, 240, 0.04);
         }
 
 
-        /* =========================
+        .skill-name {
+            color: #f3f6fa;
+
+            font-size: 1.25rem;
+        }
+
+
+        .skill-meta {
+            color: #71869c;
+
+            font-size: 0.78rem;
+        }
+
+
+        /* ==================================================
            LEVEL
-        ========================= */
+        ================================================== */
 
         .skill-level {
-            min-width: 60px;
+            min-width: 64px;
 
             padding: 7px 10px;
 
             border-radius: 10px;
+
+            text-align: center;
 
             background:
                 rgba(255, 255, 255, 0.04);
 
             border:
                 1px solid rgba(255, 255, 255, 0.07);
-
-            text-align: center;
         }
 
+
         .skill-level-number {
+            color: #f3f6fa;
+
             font-size: 20px;
+
             font-weight: 800;
         }
 
+
         .skill-level-label {
-            color: #6e7681;
+            color: #6e8195;
 
             font-size: 9px;
 
@@ -195,34 +372,48 @@
         }
 
 
-        /* =========================
+        /* ==================================================
            XP
-        ========================= */
+        ================================================== */
 
         .xp-label {
-            color: #8b949e;
-            font-size: 13px;
-        }
+            color: #71869c;
 
-        .xp-value {
-            font-size: 13px;
+            font-size: 0.8rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
             font-weight: 700;
         }
 
-        .xp-muted {
-            color: #6e7681;
+
+        .xp-value {
+            color: #48d9ef;
+
+            font-weight: 700;
         }
+
+
+        .xp-muted {
+            color: #70849a;
+
+            font-weight: 500;
+        }
+
 
         .xp-progress {
             height: 9px;
 
             background:
-                #292e38;
+                #17283a;
 
             border-radius: 20px;
 
             overflow: hidden;
         }
+
 
         .xp-progress-bar {
             height: 100%;
@@ -239,68 +430,80 @@
             box-shadow:
                 0 0 12px rgba(13, 110, 253, 0.35);
 
-            transition: width 0.4s ease;
+            transition:
+                width 0.4s ease;
         }
 
 
-        /* =========================
+        .xp-percent {
+            color: #70849a;
+
+            font-size: 0.78rem;
+        }
+
+
+        /* ==================================================
            CARD BUTTONS
-        ========================= */
+        ================================================== */
 
-        .btn-edit-skill {
-            border:
-                1px solid rgba(255, 255, 255, 0.12);
-
-            background:
-                rgba(255, 255, 255, 0.03);
-
-            color: #d0d7de;
-
-            border-radius: 10px;
-
-            transition: all 0.2s ease;
-        }
-
-        .btn-edit-skill:hover {
-            background:
-                rgba(255, 255, 255, 0.08);
+        .edit-skill-btn {
+            color: #8fdcf0;
 
             border-color:
-                rgba(255, 255, 255, 0.2);
+                rgba(13, 202, 240, 0.25);
 
-            color: white;
+            background:
+                rgba(13, 202, 240, 0.03);
         }
 
-        .btn-delete-skill {
+
+        .edit-skill-btn:hover {
+            color: #fff;
+
+            background:
+                rgba(13, 202, 240, 0.1);
+
+            border-color:
+                rgba(13, 202, 240, 0.45);
+        }
+
+
+        .delete-skill-btn {
             width: 46px;
 
-            border:
-                1px solid rgba(220, 53, 69, 0.25);
+            color: #f08b8b;
+
+            border-color:
+                rgba(220, 53, 69, 0.25);
 
             background:
                 rgba(220, 53, 69, 0.06);
-
-            color: #ff6b7a;
-
-            border-radius: 10px;
-
-            transition: all 0.2s ease;
         }
 
-        .btn-delete-skill:hover {
+
+        .delete-skill-btn:hover {
+            color: #fff;
+
             background:
-                rgba(220, 53, 69, 0.15);
+                rgba(220, 53, 69, 0.12);
 
             border-color:
-                rgba(220, 53, 69, 0.4);
-
-            color: #ff8792;
+                rgba(220, 53, 69, 0.45);
         }
 
 
-        /* =========================
+        /* ==================================================
            EMPTY STATE
-        ========================= */
+        ================================================== */
+
+        .empty-state {
+            border:
+                1px dashed rgba(130, 170, 210, 0.22);
+
+            background:
+                rgba(10, 24, 40, 0.65);
+        }
+
 
         .empty-icon {
             width: 100px;
@@ -310,19 +513,19 @@
             align-items: center;
             justify-content: center;
 
-            margin: auto;
+            margin: 0 auto;
 
             border-radius: 28px;
 
             background:
                 linear-gradient(
                     145deg,
-                    rgba(13, 110, 253, 0.12),
+                    rgba(13, 202, 240, 0.12),
                     rgba(111, 66, 193, 0.12)
                 );
 
             border:
-                1px solid rgba(13, 110, 253, 0.2);
+                1px solid rgba(13, 202, 240, 0.2);
 
             font-size: 42px;
 
@@ -331,104 +534,75 @@
         }
 
 
-        /* =========================
-           ALERTS
-        ========================= */
-
-        .skills-alert {
-            background:
-                #151b23;
-
-            border:
-                1px solid rgba(255, 255, 255, 0.08);
-
-            color: #d0d7de;
-
-            border-radius: 12px;
-        }
-
-        .skills-alert-success {
-            border-color:
-                rgba(25, 135, 84, 0.35);
-        }
-
-        .skills-alert-danger {
-            border-color:
-                rgba(220, 53, 69, 0.35);
-        }
-
-
-        /* =========================
+        /* ==================================================
            MODAL
-        ========================= */
+        ================================================== */
 
         .skill-modal .modal-content {
+            color: #e8eef7;
+
             background:
                 linear-gradient(
                     145deg,
-                    #1a2029,
-                    #11151c
+                    #12253a,
+                    #091727
                 );
 
             border:
-                1px solid rgba(255, 255, 255, 0.09);
+                1px solid rgba(130, 170, 210, 0.2);
 
             border-radius: 18px;
 
-            color: #f1f3f5;
-
             box-shadow:
-                0 25px 80px rgba(0, 0, 0, 0.65);
+                0 25px 80px rgba(0, 0, 0, 0.55);
         }
+
+
+        .skill-modal .modal-header,
+        .skill-modal .modal-footer {
+            border-color:
+                rgba(130, 170, 210, 0.12);
+        }
+
 
         .skill-modal .modal-header {
             padding: 22px 24px;
-
-            border-bottom:
-                1px solid rgba(255, 255, 255, 0.07);
         }
 
-        .skill-modal .modal-footer {
-            padding: 18px 24px;
-
-            border-top:
-                1px solid rgba(255, 255, 255, 0.07);
-        }
 
         .skill-modal .modal-body {
             padding: 24px;
         }
 
-        .skill-modal .modal-title {
-            font-size: 18px;
+
+        .skill-modal .modal-footer {
+            padding: 18px 24px;
         }
+
+
+        .skill-modal .modal-title {
+            color: #f3f6fa;
+        }
+
 
         .skill-modal .btn-close {
-            filter: invert(1) grayscale(100%);
-            opacity: 0.7;
+            filter: invert(1) grayscale(1);
         }
 
-        .skill-modal .btn-close:hover {
-            opacity: 1;
-        }
-
-
-        /* =========================
-           MODAL INPUT
-        ========================= */
 
         .skill-modal .form-label {
-            color: #d0d7de;
+            color: #9fb1c4;
         }
 
+
         .skill-modal .form-control {
+            color: #e8eef7;
+
             background:
-                #0d1117;
+                #091827;
 
             border:
-                1px solid rgba(255, 255, 255, 0.12);
-
-            color: #f1f3f5;
+                1px solid rgba(130, 170, 210, 0.2);
 
             border-radius: 10px;
 
@@ -437,61 +611,66 @@
             box-shadow: none;
         }
 
+
         .skill-modal .form-control::placeholder {
-            color: #6e7681;
+            color: #52677c;
         }
+
 
         .skill-modal .form-control:focus {
-            background:
-                #0d1117;
+            color: #fff;
 
-            color: white;
+            background:
+                #0a1b2c;
 
             border-color:
-                #0d6efd;
+                rgba(13, 202, 240, 0.5);
 
             box-shadow:
-                0 0 0 3px rgba(13, 110, 253, 0.15);
+                0 0 0 0.2rem rgba(13, 202, 240, 0.08);
         }
+
 
         .skill-modal .form-text {
-            color: #6e7681;
+            color: #71869c;
         }
 
 
-        /* =========================
+        /* ==================================================
            MODAL BUTTONS
-        ========================= */
+        ================================================== */
 
-        .btn-modal-secondary {
+        .modal-secondary-btn {
+            color: #adb5bd;
+
             border:
-                1px solid rgba(255, 255, 255, 0.1);
+                1px solid rgba(130, 170, 210, 0.14);
 
             background:
                 rgba(255, 255, 255, 0.04);
 
-            color: #adb5bd;
-
             border-radius: 10px;
         }
 
-        .btn-modal-secondary:hover {
+
+        .modal-secondary-btn:hover {
+            color: #fff;
+
             background:
                 rgba(255, 255, 255, 0.08);
-
-            color: white;
         }
 
-        .btn-modal-primary {
-            border: none;
+
+        .modal-primary-btn {
+            border: 0;
 
             border-radius: 10px;
 
             background:
                 linear-gradient(
-                    135deg,
-                    #0d6efd,
-                    #6f42c1
+                    90deg,
+                    #087f68,
+                    #10a37f
                 );
 
             color: white;
@@ -499,121 +678,141 @@
             font-weight: 600;
         }
 
-        .btn-modal-primary:hover {
+
+        .modal-primary-btn:hover {
             color: white;
 
+            background:
+                linear-gradient(
+                    90deg,
+                    #099276,
+                    #12b58d
+                );
+
             box-shadow:
-                0 8px 20px rgba(13, 110, 253, 0.25);
+                0 8px 20px rgba(16, 163, 127, 0.25);
         }
 
 
-        /* =========================
-           MODAL BACKDROP
-        ========================= */
+        /* ==================================================
+           BACKDROP
+        ================================================== */
 
         .modal-backdrop.show {
             opacity: 0.8;
         }
 
 
-        /* =========================
+        /* ==================================================
            RESPONSIVE
-        ========================= */
+        ================================================== */
 
-        @media (max-width: 576px) {
+        @media (max-width: 767.98px) {
 
-            .skills-page {
-                padding-bottom: 40px;
+            .skills-hero {
+                min-height: 145px;
             }
+
+
+            .skills-hero-icon {
+                width: 56px;
+                height: 56px;
+
+                flex-basis: 56px;
+
+                font-size: 28px;
+            }
+
 
             .skill-card {
-                border-radius: 15px;
+                border-radius: 16px;
             }
-
         }
     </style>
 
 
-    <div class="skills-page">
+    <div class="skills-page py-4 py-lg-5">
 
-        <div class="container py-5">
+        <div class="container">
 
-            {{-- =========================
-                 HEADER
-            ========================= --}}
 
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4 mb-5">
+            {{-- ==================================================
+                 HERO
+            ================================================== --}}
 
-                <div>
+            <div class="skills-hero rounded-4 p-3 p-lg-4 mb-4">
 
-                    <div class="skills-subtitle mb-2">
-                        CHARACTER PROGRESSION
+                <div
+                    class="position-relative z-1 d-flex align-items-center justify-content-between gap-3 h-100"
+                >
+
+                    <div class="d-flex align-items-center gap-3">
+
+                        <div class="skills-hero-icon">
+                            ⚔️
+                        </div>
+
+                        <div>
+
+                            <div class="skills-subtitle mb-1">
+                                CHARACTER PROGRESSION
+                            </div>
+
+                            <h1 class="skills-title display-6 fw-bold mb-1">
+                                Навыки
+                            </h1>
+
+                            <p class="skills-description mb-0">
+                                Развивай навыки своего персонажа и становись сильнее.
+                            </p>
+
+                        </div>
+
                     </div>
 
-                    <h1 class="display-5 fw-bold mb-2">
-                        ⚔️ Навыки
-                    </h1>
 
-                    <p class="skills-description mb-0">
-                        Развивай навыки своего персонажа и становись сильнее.
-                    </p>
+                    <button
+                        type="button"
+                        class="btn create-skill-btn px-4 py-2 fw-semibold"
+                        data-bs-toggle="modal"
+                        data-bs-target="#createSkillModal"
+                    >
+                        ⚔ Новый навык
+                    </button>
 
                 </div>
-
-
-                <button
-                    type="button"
-                    class="btn btn-create-skill"
-                    data-bs-toggle="modal"
-                    data-bs-target="#createSkillModal"
-                >
-                    <span class="me-2">＋</span>
-                    Новый навык
-                </button>
 
             </div>
 
 
-            {{-- =========================
+            {{-- ==================================================
                  SUCCESS
-            ========================= --}}
+            ================================================== --}}
 
             @if (session('success'))
 
-                <div
-                    class="alert skills-alert skills-alert-success alert-dismissible fade show mb-4"
-                    role="alert"
-                >
-                    <strong class="text-success me-2">✓</strong>
+                <div class="alert alert-rpg rounded-4 mb-4">
+
+                    <strong>✓ Отлично!</strong>
 
                     {{ session('success') }}
 
-                    <button
-                        type="button"
-                        class="btn-close btn-close-white"
-                        data-bs-dismiss="alert"
-                    ></button>
                 </div>
 
             @endif
 
 
-            {{-- =========================
+            {{-- ==================================================
                  ERRORS
-            ========================= --}}
+            ================================================== --}}
 
             @if ($errors->any())
 
-                <div
-                    class="alert skills-alert skills-alert-danger mb-4"
-                    role="alert"
-                >
+                <div class="alert alert-danger rounded-4 mb-4">
 
-                    <div class="fw-bold mb-2">
-                        Не удалось выполнить действие
-                    </div>
+                    <strong>⚠ Проверь данные:</strong>
 
-                    <ul class="mb-0 ps-3">
+                    <ul class="mb-0 mt-2">
 
                         @foreach ($errors->all() as $error)
 
@@ -630,19 +829,51 @@
             @endif
 
 
-            {{-- =========================
+            {{-- ==================================================
+                 SECTION TITLE
+            ================================================== --}}
+
+            <div class="d-flex justify-content-between align-items-end mb-4">
+
+                <div>
+
+                    <h2 class="section-title mb-1">
+                        Навыки персонажа
+                    </h2>
+
+                    <div class="section-subtitle">
+                        Развивай характеристики и повышай уровень своих навыков.
+                    </div>
+
+                </div>
+
+                @if ($skills->isNotEmpty())
+
+                    <div class="text-secondary small">
+                        Всего навыков:
+                        <strong class="text-light">
+                            {{ $skills->count() }}
+                        </strong>
+                    </div>
+
+                @endif
+
+            </div>
+
+
+            {{-- ==================================================
                  EMPTY STATE
-            ========================= --}}
+            ================================================== --}}
 
             @if ($skills->isEmpty())
 
-                <div class="text-center py-5">
+                <div class="empty-state rounded-4 p-5 text-center">
 
                     <div class="empty-icon mb-4">
                         ⚔️
                     </div>
 
-                    <h3 class="fw-bold mb-2">
+                    <h3 class="skills-title mb-2">
                         Навыков пока нет
                     </h3>
 
@@ -652,11 +883,11 @@
 
                     <button
                         type="button"
-                        class="btn btn-create-skill"
+                        class="btn create-skill-btn px-4 py-2 fw-semibold"
                         data-bs-toggle="modal"
                         data-bs-target="#createSkillModal"
                     >
-                        Создать первый навык
+                        ⚔ Создать первый навык
                     </button>
 
                 </div>
@@ -664,9 +895,9 @@
             @else
 
 
-                {{-- =========================
+                {{-- ==================================================
                      SKILLS GRID
-                ========================= --}}
+                ================================================== --}}
 
                 <div class="row g-4">
 
@@ -675,6 +906,7 @@
                         @php
 
                             $level = $skill->pivot->level;
+
                             $xp = $skill->pivot->xp;
 
                             $xpToNextLevel = (int) round(
@@ -716,9 +948,13 @@
 
                                 <div class="p-4">
 
-                                    {{-- Card header --}}
+                                    {{-- =========================
+                                         CARD HEADER
+                                    ========================= --}}
 
-                                    <div class="d-flex justify-content-between align-items-start mb-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-start gap-3 mb-4"
+                                    >
 
                                         <div class="d-flex align-items-center gap-3">
 
@@ -728,11 +964,11 @@
 
                                             <div>
 
-                                                <h4 class="fw-bold mb-1">
+                                                <h4 class="skill-name fw-bold mb-1">
                                                     {{ $skill->name }}
                                                 </h4>
 
-                                                <div class="text-secondary small">
+                                                <div class="skill-meta">
                                                     Навык персонажа
                                                 </div>
 
@@ -756,9 +992,13 @@
                                     </div>
 
 
-                                    {{-- XP --}}
+                                    {{-- =========================
+                                         XP
+                                    ========================= --}}
 
-                                    <div class="d-flex justify-content-between align-items-end mb-2">
+                                    <div
+                                        class="d-flex justify-content-between align-items-end mb-2"
+                                    >
 
                                         <div class="xp-label">
                                             Опыт
@@ -777,7 +1017,9 @@
                                     </div>
 
 
-                                    {{-- Progress --}}
+                                    {{-- =========================
+                                         PROGRESS
+                                    ========================= --}}
 
                                     <div class="xp-progress mb-2">
 
@@ -789,26 +1031,30 @@
                                     </div>
 
 
-                                    <div class="d-flex justify-content-between mb-4">
+                                    <div
+                                        class="d-flex justify-content-between mb-4"
+                                    >
 
-                                        <span class="text-secondary small">
+                                        <span class="xp-percent">
                                             Прогресс
                                         </span>
 
-                                        <span class="text-secondary small">
+                                        <span class="xp-percent">
                                             {{ number_format($progress, 0) }}%
                                         </span>
 
                                     </div>
 
 
-                                    {{-- Actions --}}
+                                    {{-- =========================
+                                         ACTIONS
+                                    ========================= --}}
 
                                     <div class="d-flex gap-2">
 
                                         <button
                                             type="button"
-                                            class="btn btn-edit-skill flex-grow-1"
+                                            class="btn edit-skill-btn flex-grow-1"
                                             data-bs-toggle="modal"
                                             data-bs-target="#editSkillModal{{ $skill->id }}"
                                         >
@@ -823,11 +1069,12 @@
                                         >
 
                                             @csrf
+
                                             @method('DELETE')
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-delete-skill"
+                                                class="btn delete-skill-btn"
                                                 title="Удалить"
                                             >
                                                 🗑
@@ -844,9 +1091,9 @@
                         </div>
 
 
-                        {{-- =========================
+                        {{-- ==================================================
                              EDIT MODAL
-                        ========================= --}}
+                        ================================================== --}}
 
                         <div
                             class="modal fade skill-modal"
@@ -865,6 +1112,7 @@
                                     >
 
                                         @csrf
+
                                         @method('PUT')
 
 
@@ -887,6 +1135,7 @@
                                                 type="button"
                                                 class="btn-close"
                                                 data-bs-dismiss="modal"
+                                                aria-label="Закрыть"
                                             ></button>
 
                                         </div>
@@ -918,7 +1167,7 @@
 
                                             <button
                                                 type="button"
-                                                class="btn btn-modal-secondary"
+                                                class="btn modal-secondary-btn"
                                                 data-bs-dismiss="modal"
                                             >
                                                 Отмена
@@ -926,7 +1175,7 @@
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-modal-primary px-4"
+                                                class="btn modal-primary-btn px-4"
                                             >
                                                 Сохранить изменения
                                             </button>
@@ -952,9 +1201,9 @@
     </div>
 
 
-    {{-- =========================
+    {{-- ==================================================
          CREATE MODAL
-    ========================= --}}
+    ================================================== --}}
 
     <div
         class="modal fade skill-modal"
@@ -994,6 +1243,7 @@
                             type="button"
                             class="btn-close"
                             data-bs-dismiss="modal"
+                            aria-label="Закрыть"
                         ></button>
 
                     </div>
@@ -1045,7 +1295,7 @@
 
                         <button
                             type="button"
-                            class="btn btn-modal-secondary"
+                            class="btn modal-secondary-btn"
                             data-bs-dismiss="modal"
                         >
                             Отмена
@@ -1053,7 +1303,7 @@
 
                         <button
                             type="submit"
-                            class="btn btn-modal-primary px-4"
+                            class="btn modal-primary-btn px-4"
                         >
                             Создать навык
                         </button>
@@ -1069,4 +1319,3 @@
     </div>
 
 </x-app-layout>
-

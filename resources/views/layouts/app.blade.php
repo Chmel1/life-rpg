@@ -14,10 +14,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-light">
+    <body >
 
         <div class="min-vh-100">
             @include('layouts.navigation')
+            
 
             <!-- Page Heading -->
             @isset($header)
@@ -32,6 +33,53 @@
             <main>
                 {{ $slot }}
             </main>
+        </div>
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+            @foreach(auth()->user()->unreadNotifications as $notification)
+
+                <div
+                    class="toast notification-toast"
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                    data-bs-autohide="true"
+                    data-bs-delay="5000"
+                >
+                    <div class="toast-header">
+                        @if($notification->data['type'] === 'level_up')
+                            <span class="me-2">⬆️</span>
+                            <strong class="me-auto">
+                                {{ $notification->data['title'] }}
+                            </strong>
+                        @elseif($notification->data['type'] === 'achievement_unlocked')
+                            <span class="me-2">🏆</span>
+                            <strong class="me-auto">
+                                {{ $notification->data['title'] }}
+                            </strong>
+                        @endif
+
+                        <small>только что</small>
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="toast"
+                            aria-label="Закрыть"
+                        ></button>
+                    </div>
+
+                    <div class="toast-body">
+                        {{ $notification->data['message'] }}
+
+                        @if($notification->data['type'] === 'achievement_unlocked')
+                            <div class="mt-2 fw-bold">
+                                +{{ $notification->data['xp_reward'] }} XP
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+            @endforeach
         </div>
     </body>
 </html>

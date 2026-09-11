@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Achievement;
 use App\Models\Character;
+use App\Events\AchievementUnlocked;
 
 class AchievementService
 {
@@ -105,6 +106,11 @@ class AchievementService
             [
                 'unlocked_at' => now(),
             ]
+        );
+
+        AchievementUnlocked::dispatch(
+            $character,
+            $achievement
         );
 
         $this->characterLevelService->addXp(
