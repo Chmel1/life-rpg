@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\XpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 class DashBoardController extends Controller
 {
     public function index(XpService $xpService){
@@ -36,5 +36,33 @@ class DashBoardController extends Controller
         });
 
         return view('dashboard', compact('character', 'xpToNextLevel', 'xpPercent', 'skills'));
+    }
+
+    public function updateAvatar(Request $request){
+        $request->validate([
+            'avatar' => [
+                'required',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:4096',
+            ]
+        ]);
+
+        $character = auth()->user()->character;
+
+        $oldAvatar = $character->avatar;
+
+        $path = $request->file('avatar')
+            ->store('avatars', 'public');
+
+        $character->update([
+            'avatar' => $path,
+        ]);
+
+        if ($oldAvatar) {
+            Storage::disk('public')->delete($oldAvatar);
+        }
+
+        return back();
     }
 }

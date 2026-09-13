@@ -108,7 +108,15 @@
                 >
 
                     <div class="character-navbar-icon">
-                        ⚔
+                        @if($character->avatar)
+                            <img
+                                src="{{ asset('storage/' . $character->avatar) }}"
+                                alt="Аватар"
+                                class="character-navbar-avatar"
+                            >
+                        @else
+                            ⚔
+                        @endif
                     </div>
 
                     <div class="character-navbar-info">
@@ -442,6 +450,14 @@
         font-size: 9px;
         font-weight: 700;
         line-height: 1;
+    }
+    .character-navbar-avatar {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        border-radius: 7px;
     }
     
     @media (max-width: 991.98px) {

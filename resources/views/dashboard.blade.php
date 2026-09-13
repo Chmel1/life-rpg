@@ -98,8 +98,6 @@
         width: 125px;
         height: 125px;
 
-        flex: 0 0 125px;
-
         display: flex;
         align-items: center;
         justify-content: center;
@@ -121,6 +119,8 @@
         box-shadow:
             0 0 45px rgba(13, 202, 240, 0.10),
             inset 0 0 30px rgba(13, 202, 240, 0.05);
+
+        overflow: hidden;
     }
 
 
@@ -424,39 +424,100 @@
         box-shadow:
             0 0 12px rgba(13, 202, 240, 0.18);
     }
+    .avatar-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+    }
+    .character-avatar-wrapper {
+        flex: 0 0 125px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: 10px;
+    }
+    .avatar-form {
+        margin: 0;
+    }
+
+    .avatar-upload-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        padding: 6px 10px;
+
+        color: #8bdff2;
+
+        background:
+            rgba(13, 202, 240, 0.06);
+
+        border:
+            1px solid rgba(13, 202, 240, 0.18);
+
+        border-radius: 8px;
+
+        font-size: 11px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .avatar-upload-button:hover {
+        color: #dffaff;
+
+        background:
+            rgba(13, 202, 240, 0.12);
+
+        border-color:
+            rgba(13, 202, 240, 0.35);
+
+        transform: translateY(-1px);
+    }
+
+    .avatar-upload-button span {
+        font-size: 12px;
+    }
+
+    .avatar-upload-button input {
+        display: none;
+    }
 
 
     /* MOBILE */
 
     @media (max-width: 767.98px) {
 
-        .character-hero {
-            min-height: auto;
-        }
-
-
-        .character-avatar {
-            width: 90px;
-            height: 90px;
-
-            flex-basis: 90px;
-
-            border-radius: 24px;
-
-            font-size: 46px;
-        }
-
-
-        .character-name {
-            font-size: 2rem;
-        }
-
-
-        .xp-panel {
-            margin-top: 20px;
-        }
-
+    .character-avatar-wrapper {
+        flex: 0 0 90px;
     }
+
+    .character-avatar {
+        width: 90px;
+        height: 90px;
+
+        border-radius: 24px;
+
+        font-size: 46px;
+    }
+
+    .character-name {
+        font-size: 2rem;
+    }
+
+    .xp-panel {
+        margin-top: 20px;
+    }
+}
 
 </style>
 
@@ -469,16 +530,60 @@
         {{-- HERO --}}
 
         <div class="character-hero p-4 p-lg-5 mb-4">
+            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
+            @if ($errors->has('avatar'))
+                <div class="alert alert-danger mt-3">
+                    {{ $errors->first('avatar') }}
+                </div>
+            @endif
             <div class="position-relative z-1">
 
 
                 <div class="d-flex align-items-center gap-4 flex-wrap">
 
 
-                    <div class="character-avatar">
+                    <div class="character-avatar-wrapper">
+                        <div class="character-avatar">
+                            @if($character->avatar)
+                                <img
+                                    src="{{ asset('storage/' . $character->avatar) }}"
+                                    alt="Аватар персонажа"
+                                    class="avatar-image"
+                                >
+                            @else
+                                🧙
+                            @endif
+                        </div>
 
-                        🧙
+                        <form
+                            method="POST"
+                            action="{{ route('character.avatar') }}"
+                            enctype="multipart/form-data"
+                            class="avatar-form"
+                        >
+                            @csrf
+
+                            <label class="avatar-upload-button">
+                                <span>✦</span>
+                                Изменить образ
+
+                                <input
+                                    type="file"
+                                    name="avatar"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    onchange="this.form.submit()"
+                                >
+                            </label>
+                        </form>
 
                     </div>
 

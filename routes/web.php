@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/character/avatar',[DashBoardController::class, 'updateAvatar'])->name('character.avatar');
 
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
     Route::post('/activities/{activity}/complete', [ActivityController::class, 'complete'])->name('activities.complete');

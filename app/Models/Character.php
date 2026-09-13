@@ -13,6 +13,7 @@ class Character extends Model
     'xp',
     'user_id',
     'total_xp',
+    'avatar',
 ];
 
     public function user(){
