@@ -15,8 +15,17 @@
     <div class="container">
 
         {{-- Logo --}}
-        <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">
-            ⚔ Life RPG
+        <a
+            class="navbar-brand fw-bold"
+            href="{{ route('dashboard') }}"
+        >
+            <img
+                src="{{ asset('images/life-rpg-icon.png') }}"
+                alt="Life RPG"
+                class="navbar-brand-icon"
+            >
+
+            
         </a>
 
         {{-- Mobile button --}}
@@ -81,7 +90,34 @@
                         class="notifications-navbar"
                     >
                         <span class="notifications-navbar-icon">
-                            🔔
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M18 9.5C18 6.46 16.21 4 12 4C7.79 4 6 6.46 6 9.5C6 15 4 16 4 17.5C4 18.33 4.67 19 5.5 19H18.5C19.33 19 20 18.33 20 17.5C20 16 18 15 18 9.5Z"
+                                    fill="currentColor"
+                                    fill-opacity="0.14"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M9.5 19C9.76 20.13 10.77 21 12 21C13.23 21 14.24 20.13 14.5 19"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M12 2.5V3.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
                         </span>
 
                         @php
@@ -421,9 +457,18 @@
         border-color: rgba(90, 150, 255, 0.15);
     }
 
-    .notifications-navbar-icon {
-        font-size: 19px;
-        line-height: 1;
+   .notifications-navbar-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .notifications-navbar-icon svg {
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 
     .notifications-navbar-badge {
@@ -452,12 +497,24 @@
         line-height: 1;
     }
     .character-navbar-avatar {
-        width: 100%;
-        height: 100%;
+        width: 48px;
+        height: 48px;
 
         object-fit: cover;
 
-        border-radius: 7px;
+        border-radius: 10px;
+    }
+    .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .navbar-brand-icon {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        display: block;
     }
     
     @media (max-width: 991.98px) {

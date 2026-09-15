@@ -139,26 +139,7 @@
     }
 
 
-    .character-level {
-        display: inline-flex;
-        align-items: center;
-
-        gap: 8px;
-
-        padding: 7px 14px;
-
-        border-radius: 999px;
-
-        background:
-            rgba(255, 193, 7, 0.10);
-
-        border:
-            1px solid rgba(255, 193, 7, 0.25);
-
-        color: #ffd76a;
-
-        font-weight: 700;
-    }
+    
 
 
     /* XP */
@@ -491,6 +472,66 @@
     .avatar-upload-button input {
         display: none;
     }
+    .level-icon{
+        width: 36px;
+        height: 36px;
+
+        object-fit: cover;
+    }
+    .xp-icon{
+        width: 52px;
+        height: 52px;
+
+        object-fit: cover;
+    }
+    .stat-content {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.stat-icon {
+    width: 72px;
+    height: 72px;
+
+    flex: 0 0 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+}
+
+.stat-icon img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    color: #71869c;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #eef5fb;
+}
 
 
     /* MOBILE */
@@ -606,7 +647,8 @@
 
                         <div class="character-level">
 
-                            ⭐ Уровень {{ $character->level }}
+                         Уровень {{ $character->level }}
+                            
 
                         </div>
 
@@ -688,74 +730,110 @@
 
         {{-- STATS --}}
 
-        <div class="row g-4">
+    <div class="row g-4">
 
+        {{-- LEVEL --}}
+        <div class="col-12 col-md-4">
 
-            <div class="col-12 col-md-4">
+            <div class="stat-card">
 
-                <div class="stat-card">
+                <div class="stat-content">
 
                     <div class="stat-icon">
-                        ⚡
+                        <img
+                            src="{{ asset('images/level.png') }}"
+                            alt="Уровень"
+                        >
                     </div>
 
-                    <div class="stat-label">
-                        Текущий уровень
-                    </div>
+                    <div class="stat-info">
 
-                    <div class="stat-value">
-                        {{ $character->level }}
+                        <div class="stat-label">
+                            Текущий уровень
+                        </div>
+
+                        <div class="stat-value">
+                            {{ $character->level }}
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-
-
-            <div class="col-12 col-md-4">
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🏆
-                    </div>
-
-                    <div class="stat-label">
-                        Всего опыта
-                    </div>
-
-                    <div class="stat-value">
-                        {{ $character->total_xp }}
-                        <span class="fs-6 text-secondary">XP</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="col-12 col-md-4">
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🧠
-                    </div>
-
-                    <div class="stat-label">
-                        Навыков
-                    </div>
-
-                    <div class="stat-value">
-                        {{ count($skills) }}
-                    </div>
-
-                </div>
-
-            </div>
-
 
         </div>
+
+
+        {{-- XP --}}
+        <div class="col-12 col-md-4">
+
+            <div class="stat-card">
+
+                <div class="stat-content">
+
+                    <div class="stat-icon">
+                        <img
+                            src="{{ asset('images/xp.png') }}"
+                            alt="Опыт"
+                        >
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-label">
+                            Всего опыта
+                        </div>
+
+                        <div class="stat-value">
+                            {{ $character->total_xp }}
+                            <span class="fs-6 text-secondary">
+                                XP
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- SKILLS --}}
+        <div class="col-12 col-md-4">
+
+            <div class="stat-card">
+
+                <div class="stat-content">
+
+                    <div class="stat-icon">
+                        <img
+                            src="{{ asset('images/skills.png') }}"
+                            alt="Навыки"
+                        >
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-label">
+                            Навыков
+                        </div>
+
+                        <div class="stat-value">
+                            {{ count($skills) }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
         {{-- SKILLS HEADER --}}

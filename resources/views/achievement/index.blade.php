@@ -34,20 +34,7 @@
             pointer-events: none;
         }
 
-        .hero-icon {
-            width: 64px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 24px;
-            font-size: 32px;
-            background: rgba(255, 193, 7, 0.12);
-            border: 1px solid rgba(255, 193, 7, 0.35);
-            box-shadow:
-                0 0 35px rgba(255, 193, 7, 0.18),
-                inset 0 0 25px rgba(255, 193, 7, 0.05);
-        }
+        
 
         .rpg-title {
             font-family: Georgia, "Times New Roman", serif;
@@ -127,7 +114,7 @@
             position: relative;
             overflow: hidden;
             height: 100%;
-            border-radius: 16px;
+            
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -149,25 +136,44 @@
         }
 
         .achievement-badge {
-            width: 76px;
-            height: 76px;
+            width: 100px;
+            height: 100px;
+            flex: 0 0 100px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            padding: 8px;
+
             border-radius: 22px;
-            font-size: 34px;
-            background: linear-gradient(145deg, #26384d, #101d2d);
+
+            background: linear-gradient(
+                145deg,
+                #26384d,
+                #101d2d
+            );
+
             border: 2px solid #73869c;
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.04);
+
+            box-shadow:
+                inset 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .achievement-badge-icon {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
         }
 
         .unlocked .achievement-badge {
-            border-color: #ffc107;
-            background: linear-gradient(145deg, #684f16, #272112);
-            box-shadow:
-                0 0 28px rgba(255, 193, 7, 0.16),
-                inset 0 0 20px rgba(255, 193, 7, 0.06);
-        }
+        border: none;
+        background: transparent;
+        box-shadow: none;
+    }
 
         .achievement-name {
             font-family: Georgia, "Times New Roman", serif;
@@ -241,6 +247,31 @@
             font-size: 130px;
             color: rgba(255, 193, 7, 0.08);
         }
+        .achievement-summary-icon {
+            width: 118px;
+            height: 118px;
+            flex: 0 0 118px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0;
+
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .achievement-summary-icon img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+            
+        
 
         @media (max-width: 767.98px) {
             .achievement-hero {
@@ -273,9 +304,12 @@
             {{-- Hero --}}
             <div class="achievement-hero rounded-4 p-3 p-lg-4 mb-3">
                 <div class="position-relative z-1 d-flex align-items-center gap-4 h-100">
-
-                    <div class="hero-icon">
-                        🏆
+                        <div class="summary-icon achievement-summary-icon">
+                            <img
+                                src="{{ asset('images/acievement.png') }}"
+                                alt="Достижения"
+                                class="achievement-main-icon"
+                            >
                     </div>
 
                     <div>
@@ -313,7 +347,12 @@
                 <div class="col-12 col-md-4">
                     <div class="summary-card rounded-4 p-4 h-100">
                         <div class="d-flex align-items-center gap-3">
-                            <div class="summary-icon gold">🏆</div>
+                            <div class="summary-icon achievement-summary-icon">
+                                <img
+                                    src="{{ asset('images/acievement.png') }}"
+                                    alt="Достижения"
+                                >
+                            </div>
 
                             <div class="flex-grow-1">
                                 <div class="text-secondary small">
@@ -341,7 +380,9 @@
                 <div class="col-12 col-md-4">
                     <div class="summary-card rounded-4 p-4 h-100">
                         <div class="d-flex align-items-center gap-3">
-                            <div class="summary-icon gold">⭐</div>
+                            <div class="summary-icon achievement-summary-icon">
+                                <img src="{{ asset('images/xp.png') }}" alt="">
+                            </div>
 
                             <div>
                                 <div class="text-secondary small">
@@ -468,8 +509,12 @@
                             <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
 
                                 <div class="achievement-badge">
-                                    @if ($item['unlocked'])
-                                        🏆
+                                @if ($item['unlocked'])
+                                    <img
+                                        src="{{ asset('images/acievement.png') }}"
+                                        alt="Достижение"
+                                        class="achievement-badge-icon"
+                                    >
                                     @elseif ($achievement->type === 'activity_count')
                                         ⚡
                                     @elseif ($achievement->type === 'character_level')
@@ -546,7 +591,11 @@
 
                     <div class="col-12">
                         <div class="achievement-card rounded-4 p-5 text-center">
-                            <div class="display-4 mb-3">🏆</div>
+                            <div class="display-4 mb-3">
+
+                                <img src="{{ asset('images/acievement.png') }}" alt="">
+
+                            </div>
 
                             <h3 class="rpg-title">
                                 Достижений пока нет
