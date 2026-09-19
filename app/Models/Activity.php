@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Activity extends Model
 {
     protected $fillable = [
@@ -25,5 +24,12 @@ class Activity extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function stats()
+    {
+        return $this->belongsToMany(
+            Stat::class,
+            'activity_stat'
+        )->withPivot('is_primary');
     }
 }

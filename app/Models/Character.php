@@ -52,6 +52,12 @@ class Character extends Model
     public function achievements(){
         return $this->belongsToMany(Achievement::class, 'character_achievement')->withPivot('unlocked_at');
     }
+    public function stats(){
+        return $this->belongsToMany(
+            Stat::class,
+            'character_stats'
+        )->withPivot('value');
+    }
 
     
 }
