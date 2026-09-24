@@ -33,6 +33,10 @@ class ActivityManagementService
 
             $activity->skills()->attach($skills);
 
+            $stats = $this->prepareStats($data);
+
+            $activity->stats()->sync($stats);
+
             return $activity;
         });
     }
@@ -78,7 +82,9 @@ class ActivityManagementService
 
             $skills = $this->prepareSkills($data['skills']);
 
-            $activity->skills()->sync($skills);
+            $stats = $this->prepareStats($data);
+
+            $activity->stats()->sync($stats);
 
             return $activity;
         });
@@ -86,6 +92,17 @@ class ActivityManagementService
 
     public function delete(Activity $activity){
         $activity->delete();
+    }
+
+    public function prepareStats(array $data){
+        $stats = [
+            $data ['primary_stat_id'] => ['is_primary' => true,],
+        ];
+
+        if(!empty($data['secondary_stat_id'])){
+            $stats[$data['secondary_stat_id']] = ['is_primary' => false,];
+        }
+        return $stats;
     }
 
 }

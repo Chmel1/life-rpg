@@ -58,6 +58,9 @@ class Character extends Model
             'character_stats'
         )->withPivot('value');
     }
+    public function characterStats(){
+        return $this->hasMany(CharacterStat::class);
+    }
 
     
 }

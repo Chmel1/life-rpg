@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivityRequest;
 use App\Models\Activity;
+use App\Models\Stat;
 use App\Services\ActivityManagementService;
 use App\Services\ActivityService;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class ActivityController extends Controller
 {
     public function index(){
         $character = Auth::user()->character;
-        $activities = Auth::user()->activities()->with('skills')->get();
+        $activities = Auth::user()->activities()->with('skills', 'stats')->get();
         $skills = $character->skills()->get();
+        $stats = Stat::where('type', 'primary')->get();
 
         $logs = $character->activityLogs()
         ->with('activity')
@@ -30,7 +32,8 @@ class ActivityController extends Controller
             'character',
             'activities',
             'logs',
-            'skills'
+            'skills',
+            'stats'
         ));
     }
 

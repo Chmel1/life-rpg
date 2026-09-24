@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 class ActivityRequest extends FormRequest
 {
@@ -27,6 +28,18 @@ class ActivityRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'base_xp' => ['required', 'integer', 'min:1', 'max:100'],
+            'primary_stat_id' => [
+            'required',
+                Rule::exists('stats', 'id')
+                    ->where(fn ($query) => $query->where('type', 'primary')),
+            ],
+
+            'secondary_stat_id' => [
+                'nullable',
+                Rule::exists('stats', 'id')
+                    ->where(fn ($query) => $query->where('type', 'primary')),
+                'different:primary_stat_id',
+            ],
 
             'skills' => ['required', 'array', 'min:1'],
 

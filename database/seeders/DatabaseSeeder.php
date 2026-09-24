@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SkillSeeder::class,
             ActivitySeeder::class,
+            StatSeeder::class,
+            CharacterStatsSeeder::class,
             AchievementSeeder::class,
         ]);
 

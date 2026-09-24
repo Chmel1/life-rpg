@@ -853,7 +853,70 @@
                                         <label class="form-label rpg-label">
                                             XP за выполнение
                                         </label>
+                                        
+                                        {{-- STATS --}}
+                                        <div class="mb-4">
+                                            <div class="modal-section-title mb-2">
+                                                Характеристики активности
+                                            </div>
 
+                                            {{-- PRIMARY STAT --}}
+                                            <div class="mb-3">
+                                                <label class="form-label rpg-label">
+                                                    Основная характеристика
+                                                </label>
+
+                                                @php
+                                                    $primaryStat = $activity->stats
+                                                        ->firstWhere('pivot.is_primary', true);
+                                                @endphp
+
+                                                <select
+                                                    name="primary_stat_id"
+                                                    class="form-select rpg-input"
+                                                    required
+                                                >
+                                                    <option value="">Выбери основную характеристику</option>
+
+                                                    @foreach ($stats as $stat)
+                                                        <option
+                                                            value="{{ $stat->id }}"
+                                                            {{ $primaryStat?->id === $stat->id ? 'selected' : '' }}
+                                                        >
+                                                            {{ $stat->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            {{-- SECONDARY STAT --}}
+                                            <div>
+                                                <label class="form-label rpg-label">
+                                                    Вторичная характеристика
+                                                </label>
+
+                                                @php
+                                                    $secondaryStat = $activity->stats
+                                                        ->firstWhere('pivot.is_primary', false);
+                                                @endphp
+
+                                                <select
+                                                    name="secondary_stat_id"
+                                                    class="form-select rpg-input"
+                                                >
+                                                    <option value="">Без вторичной характеристики</option>
+
+                                                    @foreach ($stats as $stat)
+                                                        <option
+                                                            value="{{ $stat->id }}"
+                                                            {{ $secondaryStat?->id === $stat->id ? 'selected' : '' }}
+                                                        >
+                                                            {{ $stat->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         <input
                                             type="number"
                                             name="base_xp"
@@ -1187,6 +1250,67 @@
                         <label class="form-label rpg-label">
                             XP за выполнение
                         </label>
+
+                        <div class="mb-4">
+                            <div class="modal-section-title mb-2">
+                                Характеристики активности
+                            </div>
+
+                            {{-- PRIMARY STAT --}}
+                            <div class="mb-3">
+                                <label class="form-label rpg-label">
+                                    Основная характеристика
+                                </label>
+
+                                <select
+                                    name="primary_stat_id"
+                                    class="form-select rpg-input"
+                                    required
+                                >
+                                    <option value="">Выбери основную характеристику</option>
+
+                                    @foreach ($stats as $stat)
+                                        <option
+                                            value="{{ $stat->id }}"
+                                            {{ old('primary_stat_id') == $stat->id ? 'selected' : '' }}
+                                        >
+                                            {{ $stat->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <div class="form-text text-secondary">
+                                    Основная характеристика сильнее влияет на получаемый XP.
+                                </div>
+                            </div>
+
+                            {{-- SECONDARY STAT --}}
+                            <div>
+                                <label class="form-label rpg-label">
+                                    Вторичная характеристика
+                                </label>
+
+                                <select
+                                    name="secondary_stat_id"
+                                    class="form-select rpg-input"
+                                >
+                                    <option value="">Без вторичной характеристики</option>
+
+                                    @foreach ($stats as $stat)
+                                        <option
+                                            value="{{ $stat->id }}"
+                                            {{ old('secondary_stat_id') == $stat->id ? 'selected' : '' }}
+                                        >
+                                            {{ $stat->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <div class="form-text text-secondary">
+                                    Вторичная характеристика даёт меньший бонус к XP.
+                                </div>
+                            </div>
+                        </div>
 
                         <input
                             type="number"
