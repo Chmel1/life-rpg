@@ -21,7 +21,7 @@ class CharacterStatsSeeder extends Seeder
             foreach($stats as $stat){
                 $character->characterStats()->firstOrCreate(
                     ['stat_id'=> $stat->id, ],
-                    ['value'=>0, ]
+                    ['value'=>5, ]
                 );
             }
         }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('character_id')->constrained()->cascadeOnDelete();
             $table->foreignId('stat_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('value')->default(0);
+            $table->unsignedTinyInteger('value')->default(5);
             $table->timestamps();
             $table->unique(['character_id', 'stat_id']);
         });
