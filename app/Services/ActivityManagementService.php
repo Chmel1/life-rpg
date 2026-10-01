@@ -81,7 +81,9 @@ class ActivityManagementService
             ]);
 
             $skills = $this->prepareSkills($data['skills']);
-
+            
+            $activity->skills()->sync($skills);
+            
             $stats = $this->prepareStats($data);
 
             $activity->stats()->sync($stats);

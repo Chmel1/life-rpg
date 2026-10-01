@@ -657,7 +657,7 @@
                             </div>
 
                             <span class="xp-badge rounded-pill px-3 py-2">
-                                +{{ $activity->base_xp }} XP
+                                +{{ $activity->calculated_xp }} XP
                             </span>
 
                         </div>
