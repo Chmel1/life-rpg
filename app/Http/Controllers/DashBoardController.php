@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stat;
+use App\Services\CharacterStatService;
 use App\Services\XpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 class DashBoardController extends Controller
 {
     public function index(XpService $xpService){
@@ -64,5 +67,13 @@ class DashBoardController extends Controller
         }
 
         return back();
+    }
+
+    public function increaseStat(Stat $stat, CharacterStatService $characterStatService){
+        $character = Auth::user()->character;
+
+        $characterStatService->increase($character, $stat);
+
+        return redirect()->route('dashboard')->with('success',  'Характеристика увеличина!');
     }
 }

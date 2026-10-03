@@ -532,6 +532,311 @@
     font-weight: 700;
     color: #eef5fb;
 }
+.rpg-stats-card {
+    position: relative;
+    padding: 24px;
+    border: 1px solid rgba(120, 150, 190, 0.18);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10, 23, 39, 0.96),
+            rgba(7, 17, 31, 0.98)
+        );
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+/* HEADER */
+
+.rpg-stats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.rpg-section-title {
+    color: #e8edf5;
+
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.rpg-section-subtitle {
+    margin-top: 3px;
+
+    color: #718096;
+    font-size: 0.78rem;
+}
+
+
+/* STAT POINTS */
+
+.stat-points {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 8px;
+
+    background: rgba(212, 175, 55, 0.07);
+
+    box-shadow:
+        0 0 15px rgba(212, 175, 55, 0.04);
+}
+
+.stat-points-icon {
+    color: #d4af37;
+    font-size: 0.9rem;
+}
+
+.stat-points-value {
+    color: #f1d36b;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.stat-points-label {
+    color: #8e8057;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+
+/* STATS LIST */
+
+.rpg-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* SINGLE STAT */
+
+.rpg-stat-row {
+    display: flex;
+    align-items: center;
+
+    min-height: 62px;
+    padding: 10px 12px;
+
+    border: 1px solid rgba(100, 130, 165, 0.13);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.018);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.rpg-stat-row:hover {
+    border-color: rgba(100, 160, 210, 0.25);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+/* NAME + PROGRESS */
+
+.rpg-stat-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.rpg-stat-name {
+    margin-bottom: 7px;
+
+    color: #d8e0eb;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.rpg-stat-progress {
+    width: 100%;
+    max-width: 280px;
+    height: 4px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.rpg-stat-progress-fill {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #7c3aed,
+        #22d3ee
+    );
+
+    box-shadow:
+        0 0 8px rgba(34, 211, 238, 0.25);
+
+    transition: width 0.3s ease;
+}
+
+
+/* VALUE */
+
+.rpg-stat-value {
+    min-width: 65px;
+
+    margin: 0 15px;
+
+    color: #e7edf5;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.rpg-stat-value span {
+    color: #596579;
+
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+
+/* PLUS BUTTON */
+
+.rpg-stat-form {
+    display: flex;
+    align-items: center;
+}
+
+.rpg-stat-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border-radius: 9px;
+
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* ACTIVE */
+
+.rpg-stat-plus.active {
+    color: #f1d36b;
+
+    border: 1px solid #c9a227;
+
+    background: rgba(212, 175, 55, 0.08);
+
+    box-shadow:
+        0 0 10px rgba(212, 175, 55, 0.08),
+        inset 0 0 10px rgba(212, 175, 55, 0.04);
+
+    cursor: pointer;
+}
+
+.rpg-stat-plus.active:hover {
+    color: #ffe58a;
+
+    border-color: #f0c94b;
+
+    background: rgba(212, 175, 55, 0.16);
+
+    box-shadow:
+        0 0 16px rgba(212, 175, 55, 0.22),
+        inset 0 0 10px rgba(212, 175, 55, 0.06);
+
+    transform: translateY(-1px);
+}
+
+.rpg-stat-plus.active:active {
+    transform: translateY(1px);
+}
+
+
+/* DISABLED */
+
+.rpg-stat-plus.disabled {
+    color: #4d5868;
+
+    border: 1px solid #303a48;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    cursor: not-allowed;
+}
+
+.character-header {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.character-main-info {
+    flex: 1;
+    min-width: 0;
+
+    padding-top: 8px;
+}
+
+
+.character-avatar-wrapper {
+    flex: 0 0 125px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.character-stats-wrapper {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 28px;
+}
+
 
 
     /* MOBILE */
@@ -557,6 +862,23 @@
 
     .xp-panel {
         margin-top: 20px;
+    }
+    .rpg-stats-card {
+        padding: 18px;
+    }
+
+    .rpg-stats-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .rpg-stat-value {
+        min-width: 55px;
+        margin: 0 8px;
+    }
+
+    .rpg-stat-progress {
+        max-width: 180px;
     }
 }
 
@@ -589,21 +911,45 @@
             <div class="position-relative z-1">
 
 
-                <div class="d-flex align-items-center gap-4 flex-wrap">
+                <div class="character-header">
+
+                    <div class="character-main-info">
+
+                        <div class="text-uppercase small fw-bold text-info mb-2">
+                            Персонаж
+                        </div>
+
+                        <h1 class="character-name mb-2">
+                            {{ $character->name }}
+                        </h1>
+
+                        <div class="character-level">
+                            Уровень {{ $character->level }}
+                        </div>
+
+                    </div>
 
 
                     <div class="character-avatar-wrapper">
+
                         <div class="character-avatar">
+
                             @if($character->avatar)
+
                                 <img
                                     src="{{ asset('storage/' . $character->avatar) }}"
                                     alt="Аватар персонажа"
                                     class="avatar-image"
                                 >
+
                             @else
+
                                 🧙
+
                             @endif
+
                         </div>
+
 
                         <form
                             method="POST"
@@ -611,9 +957,11 @@
                             enctype="multipart/form-data"
                             class="avatar-form"
                         >
+
                             @csrf
 
                             <label class="avatar-upload-button">
+
                                 <span>✦</span>
                                 Изменить образ
 
@@ -623,37 +971,126 @@
                                     accept="image/jpeg,image/png,image/webp"
                                     onchange="this.form.submit()"
                                 >
+
                             </label>
+
                         </form>
 
                     </div>
 
+                </div>
 
-                    <div class="flex-grow-1">
 
-                        <div class="text-uppercase small fw-bold text-info mb-2">
+                {{-- CHARACTER STATS --}}
 
-                            Персонаж
+                <div class="character-stats-wrapper">
+
+                    <div class="rpg-stats-card">
+
+                        <div class="rpg-stats-header">
+
+                            <div>
+
+                                <div class="rpg-section-title">
+                                    Характеристики
+                                </div>
+
+                                <div class="rpg-section-subtitle">
+                                    Сила твоего персонажа
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat-points">
+
+                                <span class="stat-points-icon">
+                                    ✦
+                                </span>
+
+                                <span class="stat-points-value">
+                                    {{ $character->stat_points }}
+                                </span>
+
+                                <span class="stat-points-label">
+                                    POINTS
+                                </span>
+
+                            </div>
 
                         </div>
 
 
-                        <h1 class="character-name mb-3">
+                        <div class="rpg-stats-list">
 
-                            {{ $character->name }}
+                            @foreach ($character->stats as $stat)
 
-                        </h1>
+                                @php
+                                    $value = $stat->pivot->value;
+
+                                    $canIncrease =
+                                        $character->stat_points > 0 &&
+                                        $value < 40;
+                                @endphp
 
 
-                        <div class="character-level">
+                                <div class="rpg-stat-row">
 
-                         Уровень {{ $character->level }}
-                            
+                                    <div class="rpg-stat-info">
+
+                                        <div class="rpg-stat-name">
+                                            {{ $stat->name }}
+                                        </div>
+
+                                        <div class="rpg-stat-progress">
+
+                                            <div
+                                                class="rpg-stat-progress-fill"
+                                                style="width: {{ ($value / 40) * 100 }}%"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="rpg-stat-value">
+
+                                        {{ $value }}
+
+                                        <span>
+                                            /40
+                                        </span>
+
+                                    </div>
+
+
+                                    <form
+                                        action="{{ route('dashboard.stats.increase', $stat) }}"
+                                        method="POST"
+                                        class="rpg-stat-form"
+                                    >
+
+                                        @csrf
+
+                                        <button
+                                            type="submit"
+                                            class="rpg-stat-plus {{ $canIncrease ? 'active' : 'disabled' }}"
+                                            {{ $canIncrease ? '' : 'disabled' }}
+                                            title="{{ $canIncrease ? 'Увеличить характеристику' : 'Недостаточно очков' }}"
+                                        >
+                                            +
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            @endforeach
 
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -662,15 +1099,11 @@
 
                 <div class="xp-panel">
 
-
                     <div class="d-flex justify-content-between align-items-center mb-2">
 
                         <span class="xp-label">
-
                             Опыт до следующего уровня
-
                         </span>
-
 
                         <span class="xp-value">
 
@@ -704,21 +1137,15 @@
                     <div class="d-flex justify-content-between mt-2">
 
                         <small class="text-secondary">
-
                             {{ round($xpPercent) }}% уровня
-
                         </small>
 
-
                         <small class="text-secondary">
-
                             Осталось:
                             {{ max(0, $xpToNextLevel - $character->xp) }} XP
-
                         </small>
 
                     </div>
-
 
                 </div>
 

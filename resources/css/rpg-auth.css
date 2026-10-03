@@ -1,0 +1,417 @@
+/* =========================================================
+   LIFE RPG — Authentication
+   Общие стили для Login / Register / Password Recovery
+   ========================================================= */
+
+.rpg-auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 16px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(13, 202, 240, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(111, 66, 193, 0.16),
+            transparent 35%
+        ),
+        #07111f;
+
+    color: #dbeafe;
+}
+
+
+/* =========================================================
+   Card
+   ========================================================= */
+
+.rpg-auth-card {
+    width: 100%;
+    max-width: 460px;
+
+    padding: 36px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 30, 50, 0.97),
+            rgba(7, 17, 31, 0.98)
+        );
+
+    border: 1px solid rgba(13, 202, 240, 0.25);
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(13, 202, 240, 0.05);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================================
+   Logo
+   ========================================================= */
+
+.rpg-auth-logo {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13, 202, 240, 0.15),
+            rgba(111, 66, 193, 0.2)
+        );
+
+    border: 1px solid rgba(13, 202, 240, 0.35);
+
+    box-shadow:
+        0 0 25px rgba(13, 202, 240, 0.12);
+
+    font-size: 34px;
+}
+
+
+/* =========================================================
+   Titles
+   ========================================================= */
+
+.rpg-auth-title {
+    margin: 0;
+
+    color: #f1f7ff;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+
+    text-shadow:
+        0 0 18px rgba(13, 202, 240, 0.12);
+}
+
+
+.rpg-auth-subtitle {
+    margin: 10px 0 0;
+
+    color: #8ea8bd;
+
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Labels
+   ========================================================= */
+
+.rpg-auth-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #b9d5e7;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+}
+
+
+/* =========================================================
+   Inputs
+   ========================================================= */
+
+.rpg-auth-input {
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    color: #e6f4ff !important;
+
+    background-color: rgba(3, 12, 23, 0.75) !important;
+
+    border: 1px solid rgba(120, 160, 190, 0.22) !important;
+    border-radius: 12px !important;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.rpg-auth-input::placeholder {
+    color: #60788b;
+}
+
+
+.rpg-auth-input:focus {
+    color: #ffffff !important;
+
+    background-color: rgba(3, 12, 23, 0.9) !important;
+
+    border-color: rgba(13, 202, 240, 0.7) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 202, 240, 0.1),
+        0 0 20px rgba(13, 202, 240, 0.06) !important;
+
+    outline: none;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.rpg-auth-button {
+    min-height: 48px;
+
+    padding: 11px 18px;
+
+    color: #06111c !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #20d4f2,
+            #8c6cf2
+        ) !important;
+
+    border: none !important;
+    border-radius: 12px !important;
+
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+
+    box-shadow:
+        0 8px 24px rgba(13, 202, 240, 0.14);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+.rpg-auth-button:hover {
+    color: #06111c !important;
+
+    transform: translateY(-1px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 30px rgba(13, 202, 240, 0.2);
+}
+
+
+.rpg-auth-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   Links
+   ========================================================= */
+
+.rpg-auth-link {
+    color: #5edff8;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+
+.rpg-auth-link:hover {
+    color: #a5f0ff;
+
+    text-decoration: none;
+
+    text-shadow:
+        0 0 12px rgba(13, 202, 240, 0.35);
+}
+
+
+/* =========================================================
+   Logout button
+   ========================================================= */
+
+.rpg-auth-logout-button {
+    background: none;
+
+    border: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Errors
+   ========================================================= */
+
+.rpg-auth-error {
+    color: #ff7b8a;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+.rpg-auth-error div + div {
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   Success
+   ========================================================= */
+
+.rpg-auth-success {
+    padding: 12px 14px;
+
+    color: #8ff3bd;
+
+    background: rgba(25, 135, 84, 0.08);
+
+    border: 1px solid rgba(25, 135, 84, 0.25);
+
+    border-radius: 10px;
+
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Info block
+   ========================================================= */
+
+.rpg-auth-info {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    color: #a9c7d8;
+
+    background: rgba(13, 202, 240, 0.06);
+
+    border: 1px solid rgba(13, 202, 240, 0.25);
+
+    border-radius: 12px;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.rpg-auth-footer {
+    margin-top: 28px;
+
+    color: #50687a;
+
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.12em;
+}
+
+
+/* =========================================================
+   Checkbox
+   ========================================================= */
+
+.rpg-auth-checkbox {
+    width: 17px;
+    height: 17px;
+
+    cursor: pointer;
+
+    accent-color: #20d4f2;
+}
+
+
+.rpg-auth-checkbox-label {
+    color: #8ea8bd;
+
+    font-size: 0.85rem;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+
+    .rpg-auth-page {
+        padding: 24px 12px;
+    }
+
+    .rpg-auth-card {
+        padding: 28px 22px;
+
+        border-radius: 20px;
+    }
+
+    .rpg-auth-logo {
+        width: 62px;
+        height: 62px;
+
+        margin-bottom: 18px;
+
+        border-radius: 17px;
+
+        font-size: 29px;
+    }
+
+    .rpg-auth-title {
+        font-size: 1.65rem;
+    }
+
+    .rpg-auth-subtitle {
+        font-size: 0.87rem;
+    }
+}

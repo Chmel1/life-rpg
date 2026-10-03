@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Gate;
 
 class ActivityController extends Controller
 {
+
+    public function __construct(
+        private ActivityManagementService $activityManagementService
+        ){}
+
     public function index(ActivityXpService $activityXpService){
         $character = Auth::user()->character;
         $activities = Auth::user()->activities()->with('skills', 'stats')->get();
@@ -42,7 +47,6 @@ class ActivityController extends Controller
             'logs',
             'skills',
             'stats',
-            'activity',
         ));
     }
 
@@ -54,19 +58,19 @@ class ActivityController extends Controller
         return redirect()->route('activities.index')->with('success', 'Активность выполнена! +' . $log->xp_earned . ' XP');
     }
 
-    public function store(ActivityRequest  $request, ActivityManagementService $activityManagementService){
-        $activityManagementService->create(
+    public function store(ActivityRequest  $request){
+        $this->activityManagementService->create(
             Auth::user(),
             $request->validated()
         );
         return redirect()->route('activities.index')->with('success', 'Активность создана!');
 
     }
-    public function update(ActivityRequest $request,Activity $activity,ActivityManagementService $activityManagementService) 
+    public function update(ActivityRequest $request,Activity $activity) 
     {
         Gate::authorize('update', $activity);
 
-        $activityManagementService->update(
+        $this->activityManagementService->update(
             $activity,
             $request->validated()
         );
@@ -75,11 +79,11 @@ class ActivityController extends Controller
             ->route('activities.index')
             ->with('success', 'Активность обновлена!');
     }
-    public function destroy(Activity $activity, ActivityManagementService $activityManagementService)
+    public function destroy(Activity $activity)
     {
         Gate::authorize('delete', $activity);
 
-        $activityManagementService->delete($activity);
+        $this->activityManagementService->delete($activity);
 
         return redirect()
             ->route('activities.index')

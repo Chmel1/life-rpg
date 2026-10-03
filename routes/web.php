@@ -10,7 +10,7 @@ use App\Http\Controllers\SkillController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/stats/{stat}/increase', [DashBoardController::class, 'increaseStat'])->name('dashboard.stats.increase');
     Route::post('/character/avatar',[DashBoardController::class, 'updateAvatar'])->name('character.avatar');
 
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');

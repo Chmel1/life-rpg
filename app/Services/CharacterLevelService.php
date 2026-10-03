@@ -30,6 +30,7 @@ class CharacterLevelService
                 $character->level
             );
             $character->level++;
+            $character->stat_points++;
             LevelUp::dispatch($character);
         }
         $character->save();
